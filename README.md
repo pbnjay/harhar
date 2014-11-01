@@ -1,9 +1,10 @@
 harhar
 ======
 
-Simple, transparent HAR logging for Go code using the http.Client interface.
-For existing code that already uses the `net/http` package, updating it to
-produce HAR logs is typically only 2 lines of code.
+Simple, transparent HTTP Archive (HAR) logging for Go code using the
+http.Client interface. For existing code that already uses the `net/http`
+package, updating existing code to generate HAR logs can typically be done
+with only 2 lines of code.
 
 Getting Started
 ---------------
