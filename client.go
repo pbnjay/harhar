@@ -157,23 +157,10 @@ func (c *Client) Do(req *http.Request) (*http.Response, error) {
 
 	// very hard to get these numbers
 	ent.Timings.Send = -1
-	ent.Timings.Wait = -1
+	ent.Timings.Receive = -1
 
-	if resp.Header.Get("Date") != "" {
-		svrReceived, terr := time.Parse(time.RFC1123, resp.Header.Get("Date"))
-		if terr != nil {
-			svrReceived, terr = time.Parse(time.RFC1123Z, resp.Header.Get("Date"))
-		}
-		if terr == nil {
-			ent.Timings.Wait = int(svrReceived.Sub(startTime).Seconds() * 1000.0)
-			ent.Timings.Receive = int(finish.Sub(svrReceived).Seconds() * 1000.0)
-			ent.Time = ent.Timings.Wait + ent.Timings.Receive
-		}
-	}
-	if ent.Timings.Wait == -1 {
-		ent.Timings.Receive = int(finish.Sub(startTime).Seconds() * 1000.0)
-		ent.Time = ent.Timings.Receive
-	}
+	ent.Timings.Wait = int(finish.Sub(startTime).Seconds() * 1000.0)
+	ent.Time = ent.Timings.Wait
 
 	ent.Start = startTime.Format(time.RFC3339Nano)
 	ent.Response, err = makeResponse(resp)
