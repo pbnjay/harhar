@@ -1,20 +1,6 @@
 harhar
 ======
 
-HTTP Archive (HAR) recording for Go code using the http.RoundTripper interface. 
+This project was originally forked from [pbnjay/harhar](https://github.com/pbnjay/harhar)
 
-Getting Started
----------------
-
-For logging from an `http.Client` you can simply set the Transport property:
-
-```go
-	recorder := harhar.NewRecorder(http.DefaultTransport) 
-	client := &http.Client{
-		Transport: recorder,
-	}
-```
-
-Then, whenever you're ready to generate the HAR output, call WriteFile:
-
-	recorder.WriteFile("output.har")
+Contains pb33f logic for handling HAR files.
